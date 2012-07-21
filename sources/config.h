@@ -39,12 +39,12 @@
 // activate verbose output
 #define VERBOSE(x) x
 #define VERBOSE2(x)
-#define VERBOSE_CONTRACT(x)
-#define VERBOSE_CONTRACT_VORONOI(x)
+#define VERBOSE_CONTRACT(x) x
+#define VERBOSE_CONTRACT_VORONOI(x) 
 
 // on, store expand information, off do not
 // required if paths found by query algorithm
-// should be expanded to pahts in the original graph
+// should be expanded to paths in the original graph
 // Note: affects the output of a sgr-file
 #define USE_CH_EXPAND
 

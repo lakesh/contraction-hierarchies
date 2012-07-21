@@ -3,6 +3,6 @@ DEBUG = #-pg #-g #-ggdb
 WARNING = -Wall -W -Wno-unused-parameter #-w
 OPTIMIZER = -O6#-finline-limit=1000
 
-CXXFLAGS = $(DEBUG) $(WARNING) $(OPTIMIZER)
+CXXFLAGS = -I/usr/local/Cellar/boost/1.49.0/include $(DEBUG) $(WARNING) $(OPTIMIZER)
 LIBS = #/usr/lib/libpapi.a
-LINK = -lboost_regex -lboost_iostreams
+LINK = -L/usr/local/Cellar/boost/1.49.0/lib -lboost_regex-mt -lboost_iostreams-mt

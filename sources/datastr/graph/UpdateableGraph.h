@@ -25,7 +25,7 @@
 
 /**
  * Represents a graph that allows changes (e.g., edge additions/removals)
- * at any point in time. Its interface is closly related to the Static/DynamicGraph.
+ * at any point in time. Its interface is closely related to the Static/DynamicGraph.
  * Internally, an adjacency array is kept. The size of each edge group is always
  * a power of two. If there are less edges leaving a particular node, the data
  * structure contains holes. If an edge is added such that the existing capacity

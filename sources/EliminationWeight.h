@@ -39,8 +39,8 @@ public:
      * max value of an edge weight (due to the chosen type)
      * (used to represent 'infinity')
      */
-    static constexpr Type MAX_VALUE = __DBL_MAX__;  // Nemanja: was only const
-    static constexpr Type MIN_VALUE = -__DBL_MAX__; // Nemanja: was only const
+    static const Type MAX_VALUE = __DBL_MAX__;  // Nemanja: was only const
+    static const Type MIN_VALUE = -__DBL_MAX__; // Nemanja: was only const
     
 };
 

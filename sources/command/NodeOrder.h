@@ -326,7 +326,7 @@ namespace command {
                  * ************* */
 
                 // Read original graph. Each node will be in level n. During the node ordering
-                // each contratacted node will be put in its own level.
+                // each contracted node will be put in its own level.
                 VERBOSE( std::cout << "Open file " << file << "..." << std::endl; )
                 std::ifstream in(file.c_str());
                 if (!in.is_open()) { cerr << "Cannot open " << file << endl; exit(1); }

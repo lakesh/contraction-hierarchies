@@ -86,8 +86,8 @@ int main(int argc, char *argv[])
 
 // doesn't look nice, but required by the compiler (gcc 4)
 const EdgeWeight Weight::MAX_VALUE;
-constexpr EliminationWeight::Type EliminationWeight::MAX_VALUE; // Nemanja: was only const
-constexpr EliminationWeight::Type EliminationWeight::MIN_VALUE; // Nemanja: was only const
+const EliminationWeight::Type EliminationWeight::MAX_VALUE; // Nemanja: was only const
+const EliminationWeight::Type EliminationWeight::MIN_VALUE; // Nemanja: was only const
 const EdgeWeight Weight::MAX_INTEGER;
 const int datastr::graph::UpdateableGraph::LOOK_FOR_SECOND_EDGE_BACKWARD;
 const int datastr::graph::UpdateableGraph::LOOK_FOR_SECOND_EDGE_FORWARD;

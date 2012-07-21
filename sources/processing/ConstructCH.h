@@ -1244,7 +1244,7 @@ namespace processing {
          */
         void eliminateByPQueue()
         {
-            VERBOSE( cout << "Eliminatate by priority-queue..." << endl );
+            VERBOSE( cout << "Eliminate by priority-queue..." << endl );
 
             // Save statistics to file
             if (_statsFile != "")
@@ -1277,7 +1277,7 @@ namespace processing {
 
             // lazy updates counter
             NodeID lazyUpdateCounter = 0;
-            // lazy updates counter at the beginnig of the last check interval
+            // lazy updates counter at the beginning of the last check interval
             // if there are too many lazy updates during a check interval
             // the whole priority queue is updated
             NodeID lastLazyUpdateCounter = 0;
@@ -1299,7 +1299,7 @@ namespace processing {
                         timeLast = now;
                     }
                 )
-                
+                //VERBOSE(cout << "Lazy update " << _lazyUpdate << endl); //Added by Lakesh
                 // lazy update: update min element, only remove it if it is still the min element
                 if (_lazyUpdate)
                 {
@@ -1369,6 +1369,10 @@ namespace processing {
                 
                 // process node, meaning contraction (adds shortcuts),
                 // update of level of node and update of priority of neighbors
+                
+                
+                VERBOSE(cout << "********Eliminating node********* " << node << endl); // Added by Lakesh
+                
                 processNode<PHASE_NODEORDER_ELIMINATE,false>(node, &searchSpace, &edgeDiff, &newEdges, &inDegree, &outDegree);
                 if (saveStats != SAVE_STATS_NONE) time2 = timestamp() - time2;
                 VERBOSE_CONTRACT( if (saveStats != SAVE_STATS_NONE) cout << " eliminate " << fixed << setprecision(3) << time2 * 1000 << flush; )
@@ -2168,7 +2172,7 @@ namespace processing {
         * after the node is removed. The necessity of shortcuts is checked
         * by searching for witness paths that show an alternative path not
         * including node. There are currently four local searches with significant
-        * implemenation differences:
+        * implementation differences:
         *  - 1-hop search
         *  - 2-hop search using many-to-many
         *  - local Dijkstra search with 1-hop backward search
@@ -3463,9 +3467,11 @@ namespace processing {
         void initTestShortestPaths()
         {
             srand(25);
-            for (NodeID x = 0; x < _noOfTestCases; x++) {
+            for (NodeID x = 0; x < _noOfTestCases; x++) { 
                 NodeID s = randomNodeID(_graph->noOfNodes());
                 NodeID t = randomNodeID(_graph->noOfNodes());
+                cout << "source is " << s << endl;
+                cout << "target is " << t << endl;
                 _testRuns.push_back( stPair(s, t) );
             }
             _testRuns.push_back( stPair(24066, 24537) );
@@ -3488,6 +3494,7 @@ namespace processing {
          */
         void testShortestPaths()
         {
+           
             VERBOSE_CONTRACT( cout << "testShortestPaths" << endl; )
             for (NodeID x = 0; x < _testRuns.size(); x++) {
                 _testDijkstra.bidirSearch(_testRuns[x].first, _testRuns[x].second);
