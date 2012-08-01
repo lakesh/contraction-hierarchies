@@ -33,6 +33,7 @@
 #include "../processing/DijkstraCH.h"
 #include "../processing/ConstructCH.h"
 
+
 const static bool COMPRESSED_SGR_FILE = false;
 
 /**
@@ -166,7 +167,8 @@ namespace command {
                     case 'C':
                         chFile = string(optarg);
                         break;
-                        
+                       
+                    //Added by Lakesh
                     case 'S':
                         source = atoi(optarg);
                         break;
@@ -174,6 +176,7 @@ namespace command {
                     case 'T':
                         target = atoi(optarg);
                         break;
+                     
                 }
             }
 
@@ -509,17 +512,60 @@ namespace command {
             }
             assert( searchGraph != NULL );
             
-            //Find the shortest path between source and target (Added by Lakesh)
-            cout << "Source ->" << source << endl;
-            cout << "Target ->" << target << endl;
-            DijkstraSearchCH dijkstra1(searchGraph);
-            dijkstra1.bidirSearch(source, target);
-            Path path;
-            dijkstra1.pathTo(path, target, -1, true, true /* expand */);
-            cout << "Path length is " << path.length() << endl;
-            cout << "Path is " << path << endl;
-            return 0; 
             
+            ///////////////Added by Lakesh//////////////////////////////////////
+            /////Experimental set up to find the shortest path//////////////////
+            ////////////////////////////////////////////////////////////////////
+            
+            /*int n = 100;
+            int source[n];
+            int target[n];
+            //Number of nodes in the graph of minneapolis
+            int num_nodes = 374;
+            
+            //initialize random seed:
+            srand ( time(NULL) );
+
+            string testDataFileName = "testDataFile.dat";
+            ofstream testDataOutput(testDataFileName.c_str());
+            
+            for(int i=0; i<n; i++) {
+                source[i] = rand() % num_nodes;
+                target[i] = rand() % num_nodes;
+                cout << source[i] << " " << target[i] << endl;
+                testDataOutput << source[i] << " " << target[i] << endl;
+            }
+            
+            testDataOutput.close();
+                        
+            DijkstraSearchCH dijkstra1(searchGraph);
+            
+            double timeTaken;
+            timeTaken = timestamp();
+            for (int i=0; i<n; i++) {
+                dijkstra1.bidirSearch(source[i], target[i]);
+                Path path;
+                dijkstra1.pathTo(path, target[i], -1, true, true);
+                cout << "source: " << source[i] << " " << "target: " << target[i] << " " << path.length() << endl;
+                cout << path << endl;
+                dijkstra1.clear();
+            }
+            timeTaken = timestamp() - timeTaken;
+            cout << "Total time taken " << timeTaken << endl;
+            return 0;
+            */
+
+            DijkstraSearchCH dijkstra1(searchGraph);
+            dijkstra1.bidirSearch(source,target);
+            Path path;
+            dijkstra1.pathTo(path, target, -1, true, true);
+            cout << path.length() << endl;
+            cout << path << endl; 
+            exit(0); 
+            ////////////////////////////////////////////////////////////////////
+            /////////////////////////End of experiment//////////////////////////
+            ////////////////////////////////////////////////////////////////////
+
             // Prepare source and target pairs for statistic runs. They are specified by the
             // initalization of the random number generator: srand(1)
             if ( runs.size() == 0 )
